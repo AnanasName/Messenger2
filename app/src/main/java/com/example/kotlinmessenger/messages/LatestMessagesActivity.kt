@@ -15,6 +15,7 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import com.example.kotlinmessenger.R
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_latest_messages.*
 import kotlinx.android.synthetic.main.latest_message_row.view.*
 
@@ -38,10 +39,34 @@ class LatestMessagesActivity : AppCompatActivity() {
     verifyUserIsLoggedIn()
   }
 
-  class LatestMessageRow(val chatMessage: ChatMessage): Item<ViewHolder>() {
-    override fun bind(viewHolder: ViewHolder, position: Int) {
-      viewHolder.itemView.message_textview_latest_message.text = chatMessage.text
-    }
+    class LatestMessageRow(val chatMessage: ChatMessage): Item<ViewHolder>() {
+        var chatPartnerUser: User? = null
+
+        override fun bind(viewHolder: ViewHolder, position: Int) {
+            viewHolder.itemView.message_textview_latest_message.text = chatMessage.text
+
+            val chatPartnerId: String
+            if (chatMessage.fromId == FirebaseAuth.getInstance().uid) {
+                chatPartnerId = chatMessage.toId
+            } else {
+                chatPartnerId = chatMessage.fromId
+            }
+
+            val ref = FirebaseDatabase.getInstance().getReference("/users/$chatPartnerId")
+            ref.addListenerForSingleValueEvent(object: ValueEventListener {
+                override fun onDataChange(p0: DataSnapshot) {
+                    chatPartnerUser = p0.getValue(User::class.java)
+                    viewHolder.itemView.username_textview_latest_message.text = chatPartnerUser?.username
+
+                    val targetImageView = viewHolder.itemView.imageview_latest_message
+                    Picasso.get().load(chatPartnerUser?.profileImageUrl).into(targetImageView)
+                }
+
+                override fun onCancelled(p0: DatabaseError) {
+
+                }
+            })
+        }
 
     override fun getLayout(): Int {
       return R.layout.latest_message_row
