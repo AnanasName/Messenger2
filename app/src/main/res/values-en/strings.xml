@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">KotlinMessenger</string>
     <string name="send">Send</string>
     <string name="enter_message">Enter Message</string>
     <string name="email">Email</string>

@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/menu_new_message"
-        android:title="New Message"
+        android:title="@string/new_message"
         app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/menu_sign_out"
-        android:title="Sign Out"
+        android:title="@string/sign_out"
         app:showAsAction="ifRoom"/>
 
 </menu>

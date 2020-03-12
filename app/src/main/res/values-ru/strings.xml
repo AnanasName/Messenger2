@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="send">Отправить</string>
+    <string name="enter_message">Ввести сообщение</string>
+    <string name="email">Почта</string>
+    <string name="password">Пароль</string>
+    <string name="login">Логин</string>
+    <string name="back_to_registration">Обратно к регистрации</string>
+    <string name="username">Имя</string>
+    <string name="register">Регистрация</string>
+    <string name="already_have_an_account">Уже есть аккаунт?</string>
+    <string name="select_photo">Выбрать фото</string>
+    <string name="new_message">Новое сообщение</string>
+    <string name="sign_out">Выйти</string>
+    <string name="select_user">Выберите пользователя</string>
+</resources>
